@@ -6,7 +6,7 @@
             color: white;
             background-size: cover;
         }
-         .box{ width: 900px;
+         .box{ width: 9000px;
        float:right;
        border:1px solid none;}
        .box ul li{
