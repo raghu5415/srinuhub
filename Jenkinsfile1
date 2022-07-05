@@ -1,31 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@raghu5415 
-srinivas1987devops
-/
-myweb
-Public
-forked from javahometech/myweb
-Code
-Pull requests
-59
-Actions
-Projects
-Wiki
-Security
-Insights
-myweb/Jenkins-decnew
-@srinivas1987devops
-srinivas1987devops Update Jenkins-decnew
-Latest commit 74b53f6 19 days ago
- History
- 1 contributor
-35 lines (30 sloc)  1.01 KB
+
 
 pipeline{
     agent any
