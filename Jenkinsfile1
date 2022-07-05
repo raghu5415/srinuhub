@@ -1,0 +1,65 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@raghu5415 
+srinivas1987devops
+/
+myweb
+Public
+forked from javahometech/myweb
+Code
+Pull requests
+59
+Actions
+Projects
+Wiki
+Security
+Insights
+myweb/Jenkins-decnew
+@srinivas1987devops
+srinivas1987devops Update Jenkins-decnew
+Latest commit 74b53f6 19 days ago
+ History
+ 1 contributor
+35 lines (30 sloc)  1.01 KB
+
+pipeline{
+    agent any
+    
+    environment{
+        PATH = "/opt/maven3/bin:$PATH"
+    }
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git credentialsId: 'javahome2', url: 'https://github.com/srinivas1987devops/myweb.git'
+            }
+        }
+        stage("Maven Build"){
+            steps{
+                sh "mvn clean package"
+                sh "mv target/*.war target/myweb.war"
+            }
+        }
+        stage("deploy-dev"){
+            steps{
+                sshagent(['tomcat-new']) {
+                sh """
+                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.34.139:/home/ec2-user/apache-tomcat-9.0.64/webapps/
+                    
+                    ssh ec2-user@172.31.34.139 /home/ec2-user/apache-tomcat-9.0.64/bin/shutdown.sh
+                    
+                    ssh ec2-user@172.31.34.139 /home/ec2-user/apache-tomcat-9.0.64/bin/startup.sh
+                
+                """
+            }
+            
+            }
+        }
+    }
+}
+
